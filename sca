@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Shell Command Archive
+
+command=$1
+
+# default -> insert and go
+if [ "$command" == "" ]; then
+  cat ~/.sca | dmenu -i -p "command: " -l 15 | xsel -i
+  xdotool key Shift+Insert
+fi
+
+# load command selected
+if [ "$command" == "l" ]; then
+  echo "$(xsel -o)" >> ~/.sca
+fi
